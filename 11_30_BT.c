@@ -1,47 +1,57 @@
-//làm lại bài ngày hôm qua chưa được
+//Hien thi nhieu lan
 #include <stdio.h>
+#include <stdlib.h>
 
-typedef struct 
+void NhapMang(int **ptr, int *length)   
 {
-    int dem[100];
-    int giatri[100];
-    int size_mang;
-}Tra_ve;
-Tra_ve TV;
+    printf("Nhap kich thuoc mang: ");
+    scanf("%d", length);
+    *ptr = (int*)malloc(*length * sizeof(int));
 
-Tra_ve Tim2so(int cnt[], int arr[], int size)
-{
-    for(int i = 0; i<size; i++)
+    for(int i =0; i<*length; i++)
     {
-        for(int j = 0; j<size; j++)
-        {
-            if((arr[i] == arr[j])&&(i<j))
-            {
-                TV.giatri[TV.size_mang] = arr[i];
-                TV.dem[TV.size_mang]++; 
-                TV.size_mang++;     
-                                                                     
-            }
-        }
+        printf("a[%d]: ", i);
+        scanf("%d", (*ptr+i));
     }
-    // return Tim2so(TV.dem, TV.giatri, TV.size_mang);
+    
 }
+void HienThi(int arr[], int length)
+{
+    printf("\n");
+    printf("Mang la:  ");
+    for(int i = 0; i<length; i++)
+    {
+        printf("%d\t", arr[i]);
+    }
+}
+  void LapLai(int arr[], int length)
+  {
+    int max = 1;
+    for (int i = 0; i < length; i++)
+    {
+      int dem = 0;
+      for (int j = 0; j < length; j++)
+      {
+      if ((arr[i] == arr[j])) dem++;
+      }
+      if (max < dem)
+      {
+        // int SPT = 0;
+        printf("\nPhan tu lap la: %d\nVoi so lan xuat hien la: %d\n", arr[i], dem);   
+        // printf("So phan tu %d", SPT);
+        // SPT++;
+      }
+    }     
+  }
 int main(int argc, char const *argv[])
 {
-    int A[9] = {4, 7, 3, 12, 2, 3, 4, 3, 7};
+    int *arr;
+    int length;
 
-    Tim2so(TV.dem, A, 9);
-    for(int i = 0; i < TV.size_mang; i++)
-    {
-        printf("So  lan Trung: %d\t",TV.dem[i]);         
-    }
-           printf("\n");  
-     for(int i = 0; i < TV.size_mang; i++)
-    {
-        printf("Gia Tri Trung: %d\t",TV.giatri[i]);         
-    }
-        printf("\n"); 
-        printf("Kich thuoc mang ngo ra: %d\n", TV.size_mang);    
+    NhapMang(&arr, &length);
+    HienThi(arr, length);
+    LapLai(arr, length);
+
 
     return 0;
 }
